@@ -1,0 +1,35 @@
+{\rtf1\ansi\ansicpg1254\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 The program is to solve the cannibals and missionaries problem in which the number of cannibals cannot be larger than the number of missionaries while carrying the cannibals and the missionaries across the river. \
+\
+The first case is for 5 cannibals, 5 missionaries and a boat holding up to 3.\
+The second case is for 6 cannibals, 6 missionaries and a boat holding up to 4.\
+\
+Detailed explanation:\
+\
+"""When you run the code, you will be asked to enter a or b. If you enter a, you will see the solution for 5 cannibals, \
+5 missionaries, and a boat holding up to 3. If you enter b, you will see the solution for 6 cannibals, \
+6 missionaries, and a boat holding up to 4. The first part of print will show the state spaces from the beginning step by step.\
+objects for space states have the following attributes:\
+(#left cannibals, #left missionaries, boat position, #right cannibals, #right missionaries). \
+The second print is in the similar format given in the assignment decsription. It shows the cannibals and missionaries side by side, \
+and the cannibals and missionaries sent by boat. For example;  \
+                                             Left Side:CCCCCCMMMMMM\
+                                             Right Side:\
+                                             Send right:CM\
+After sending,                                              \
+                                             Left Side:CCCCCMMMMM\
+                                             Right Side:CM\
+                                             Send left:M                              \
+                                             \
+\
+Our program starts with breadth_first_search(initial_state). This function takes a state which is the root state and it returns the\
+final(aimed) state if it exists. During this search the children of states are created by childs(state,moves) function. Moves is a list\
+obtained generate_moves() function. Generate_moves() returns a list of possible set of #cannibals, #missionaries in the boat\
+according to the boat capacity. After reaching the aimed state, finding_parents returns the path from root to aimed state in a reverse \
+order. Last function, print_the_path() prints the solutions steps in a desired format."""}
