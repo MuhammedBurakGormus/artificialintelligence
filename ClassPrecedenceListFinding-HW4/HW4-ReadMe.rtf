@@ -1,0 +1,50 @@
+{\rtf1\ansi\ansicpg1254\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 The program creates 3 class precedence lists for 3 different trees.\
+Firstly, the program creates the links and the trees.\
+Then, fish-hook algorithm is implemented to find class precedence lists.\
+\
+Detailed Explanation:\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 #Before running the program, you will be asked to enter an integer for the desired problem.\
+	For the first problem(to see the Class Precedence Lists for ifstream, stream and of stream), please enter 1.\
+	For the second problem(to see the Class Precedence Lists for Consultant Manager, Director and Permanent Manager), please enter 2.\
+	For the third problem(to see the Class Precedence Lists for Crazy and Jacque), please enter 3.\
+\
+# To see the single stepping mode(the subsequent steps to obtain class precedence list and hook list updates), please set the tracing_mode to True which is at line 8.\
+\
+#General logic of the code is as follows;\
+	1. Creating a tree for each problem by using link_creator.\
+	2. Extracting a tree for a specific node by using the existing_tree function\
+	3. After obtaining the extracted tree, creating a hook list by using hook_list function.\
+			hook_list function calls pairs and hook_for_one_class functions.\
+	4.After obtaining hook_list, we put the hook_list into second_part function. This function takes a hook list and returns a class precedence list.\
+\
+#General logic of the code is as follows; (DETAILED AND SOME EXAMPLES ARE GIVEN TO UNDERSTAND THE FUNCTIONS BETTER)\
+	1. Creating a tree for each problem by using link_creator.\
+	2. Extracting a tree for a specific node by using the existing_tree function. (For example, if the chosen node is ifstream, the extracted_ifstream contains the tuples (ifstream, istream), (istream,ios), (ios, Everything); if the chosen node is Director, the extracted_director (extracted_d in the code) contains the tuples (Director, Manager), (Manager, Employee), (Employee, Everything) ).\
+	3. After obtaining the extracted tree, creating a hook list. (For example, for fstream the hook_list_fstream contains the tuples (fstream,iostream), (iostream,istream), (istream,ostream), (istream,ios), (ostream,ios), (ios, Everything) ).\
+		#To achieve this step; pairs, hook_for_one_class and hook_list functions are used. \
+			#hook_for_one_class returns a list containing the elements that are hooked for only one node. (For example; if iostream is chosen, this function returns the list [iostream, istream, ostream].\
+			#The list obtained above is processed with pairs function. This function makes pairs and stores them in a list. (For example, if the list above is taken into pairs function, this function returns [(iostream, istream), (istream, ostream)].\
+			#hook_list functions allows us to repeat the steps mentioned above for each node in a given tree(edge list). \
+	4.After obtaining hook_list, we put the hook_list into second_part function. This function takes the hook list and returns class precedence list. \
+		#To achieve this;\
+			#We store the first elements of the tuples in the hook_list at first_index_list\
+			#We store the second elements of the tuples in the hook_list at second_index_list\
+			#We check for every elements in first_index_list; the amount of them in the hook_list in terms of the first index and second index. This is done to determine the tuples to be removed from hook_list and adding the first element of them into class precedence list(cpl in the code). This information is kept in counter at line 83. \
+			# For example, we have a hook list [('ofstream', 'ostream'), ('ostream', 'ios'), ('ios', 'Everything\'92)].\
+					The counter is [(1,0),(1,1),(1,1)] representing the number of occurrences of ofstream, ostream and ios at the first and second indices. \
+			#Since the second index of the first element of the counter is 0, (ofstream,ostream) tuple should be removed and of stream should be added to the class precedence list. \
+			#After hook_list length is reduced to zero; Everything is added to class precedence list. \
+\
+\
+\
+\
+\
+}
